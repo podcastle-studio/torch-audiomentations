@@ -63,11 +63,11 @@ class AddBackgroundNoise(BaseWaveformTransform):
         # TODO: check that one can read audio files
         if sample_rate is not None:
             self.audio = Audio(sample_rate=sample_rate, mono=True)
-
+        
+        self.background_paths = background_paths
         if len(self.background_paths) == 0:
             raise EmptyPathException("There are no supported audio files found.")
 
-        self.background_paths = background_paths
         self.min_snr_in_db = min_snr_in_db
         self.max_snr_in_db = max_snr_in_db
         if self.min_snr_in_db > self.max_snr_in_db:
