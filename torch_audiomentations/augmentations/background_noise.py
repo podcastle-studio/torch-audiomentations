@@ -61,8 +61,6 @@ class AddBackgroundNoise(BaseWaveformTransform):
         )
 
         # TODO: check that one can read audio files
-        self.background_paths = find_audio_files_in_paths(background_paths)
-
         if sample_rate is not None:
             self.audio = Audio(sample_rate=sample_rate, mono=True)
 
