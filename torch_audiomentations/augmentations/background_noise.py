@@ -67,6 +67,7 @@ class AddBackgroundNoise(BaseWaveformTransform):
         if len(self.background_paths) == 0:
             raise EmptyPathException("There are no supported audio files found.")
 
+        self.background_paths = background_paths
         self.min_snr_in_db = min_snr_in_db
         self.max_snr_in_db = max_snr_in_db
         if self.min_snr_in_db > self.max_snr_in_db:
