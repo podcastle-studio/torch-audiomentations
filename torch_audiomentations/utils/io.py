@@ -134,7 +134,17 @@ class Audio:
         else:
             num_samples, sample_rate = self.get_audio_metadata(file)
 
-        return math.ceil(num_samples * self.sample_rate / sample_rate)
+            original_data, _ = torchaudio.load(
+                    file
+                )
+            import numpy as np
+
+            samples = librosa.core.resample(
+                    np.array(original_data[0]), orig_sr=sample_rate, target_sr=24000
+                )[None]
+            #num_samples, sample_rate = self.get_audio_metadata(file)
+
+        return #samples.shape[1]math.ceil(num_samples * self.sample_rate / sample_rate)
 
     def __init__(self, sample_rate: int, mono: bool = True):
         super().__init__()
