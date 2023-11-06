@@ -101,9 +101,10 @@ class AddBackgroundNoise(BaseWaveformTransform):
         # the inner call to rms_normalize ensures concatenated pieces share the same RMS (1)
         # the outer call to rms_normalize ensures that the resulting background has an RMS of 1
         # (this simplifies "apply_transform" logic)
+        
         return audio.rms_normalize(
             torch.cat([audio.rms_normalize(piece) for piece in pieces], dim=1)
-        )
+        )[:, :target_num_samples]
 
     def randomize_parameters(
         self,
