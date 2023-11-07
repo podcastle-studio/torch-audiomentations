@@ -134,8 +134,6 @@ class Audio:
         else:
             num_samples, sample_rate = self.get_audio_metadata(file)
 
-            samples, _ = librosa.load(file, sr = self.sample_rate)
-
         return math.ceil(num_samples * self.sample_rate / sample_rate)
 
     def __init__(self, sample_rate: int, mono: bool = True):
